@@ -1,0 +1,62 @@
+    1  sudo apt update
+    2  sudo apt install refind
+    3  ls /boot/efi/
+    4  sudo ls /boot/efi/
+    5  sudo ls /boot/efi/EFI
+    6  sudo ls /boot/efi/EFI/refind
+    7  ls \\EFI
+    8  ls /
+    9  ls -la /
+   10  ls -la \EFI
+   11  sudo refind-install --shim /boot/efi/EFI/ubuntu/shimx64.efi --localkeys
+   12  refind-mkdefault 
+   13  sudo refind-mkdefault 
+   14  su
+   15  sudo ls esp/EFI
+   16  sudo /esp
+   17  sudo ls /boot
+   18  sudo ls /boot/efi
+   19  sudo ls /boot/efi/EFI
+   20  sudo ls /boot/efi/EFI/refind
+   21  bcdedit
+   22  sudo efibootmgr
+   23  sudo efibootmgr -o 0002 0003 0001 0005 0000 2001 2002 3001
+   24  sudo efibootmgr
+   25  timedatectl set-local-rtc 1
+   26  sudo snap install telegram-desktop
+   27  apt install git
+   28  sudo apt install git
+   29  echo sudo apt install git
+   30  echo "4234rfsd"
+   31  git
+   32  mkdir ~/week1
+   33  cd ~/week1
+   34  git status
+   35  cd ..
+   36  ls
+   37  mv week1 -t Mytest
+   38  cd Mytest
+   39  git remote add origin https://github.com/MatrosovaTalia/OperatingSystems.git
+   40  git push -u origin master
+   41  git status
+   42  ls
+   43  ls week1
+   44  ls > list.txt
+   45  ls
+   46  ls | sort -r | tail -n 3
+   47  list.txt
+   48  ls
+   49  rm list.txt 
+   50  cd week1
+   51  ls /usr/bin | less
+   52  ls /usr/bin | grep gcc
+   53  gcc
+   54  sudo apt install gcc
+   55  sudo nano /etc/sudoers
+   56  ls /usr/bin | grep gcc
+   57  man sort
+   58  ls /usr/bin | grep gcc | sort -r
+   59  ls /usr/bin | grep gcc | sort -r > ex1.txt
+   60  ls
+   61  cat ex1.txt 
+   62  history > ex2.txt
