@@ -36,6 +36,7 @@ void *produce(void *arg) {
             // printf("I produce, current value is %d\n", current_value);
         }
         else{
+            consumer_sleep = 0;
             producer_sleep = 1;
         }
     }    
@@ -53,6 +54,7 @@ void *consume(void *arg){
             // printf("I consume, current value is %d\n", current_value);
         }
         else{
+            producer_sleep = 0;
             consumer_sleep = 1;
         }
     }
