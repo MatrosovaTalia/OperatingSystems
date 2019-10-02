@@ -2,20 +2,19 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define LEN 100
-
 int main() {
-    /* There was a declaration of a pointer to a string without memory alllocation*/
-    char **s = (char**)malloc(LEN); 
-    *s = malloc(LEN);
+    /* Corrected declaration of a pointer without memory alllocation*/
+    char **s = (char**)malloc(sizeof(char*)); 
     char foo[] = "Hello World";
-
-    *s = (char*)malloc(strlen(foo));
-    memcpy(*s, foo, strlen(foo));
-    printf("*s is %s\n", *s); // something was wrong with closing quote and pointers
+    *s = foo;
+    printf("s is %s\n", *s); // something was wrong with closing quote
     // it is not allowed to copy strings like that : s[0] = foo; 
     memcpy(*s, foo, strlen(foo));
-    printf("s[0] is also %s\n", s[0]);
+    printf("s[0] is %s\n", s[0]);
     
     return (0); 
+
+    /* s is Hello World
+       s[0] is Hello World
+    */
 }
