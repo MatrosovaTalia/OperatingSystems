@@ -1,0 +1,2 @@
+Given that the virtual address space is 16-bit and the page size is 8KB (2^10 * 2^3 = 2^13). Then. the number of entries in the page table is (2^(number of virtual addresses))/(page size).
+Thus numer of page entries is: 2^16/2^13 = 2^3 = 8.

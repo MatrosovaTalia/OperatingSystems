@@ -1,0 +1,1 @@
+When someone access a program via virtual address, this person knows the exact address of a program in RAM. When someone access a programm via its virtual adress, this person access page table, where all virtual addresses are mapped to the physical one that way, that each programm has its own address space, that no other programm can access it.
