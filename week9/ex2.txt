@@ -1,0 +1,16 @@
+Exercise 2:
+
+The Higher the hit number and the lower the miss number, the higher the ratio itself (can be proven via limit).
+
+1. Construct the secuence of references that will result in increased Hit/Miss ratio.
+To increase the ratio wee need to take the sequence of references with the bigger number of hits and lower number of misses. For example each time acces the same page:
+a sequence of length n < 100, with the references to the same page x = 1:
+1, 1, 1.. .1, 1, 1 
+For a sequence of 1s of length 150 output of ex1.c is:
+hits: 149, misses: 1, ratio: 149.000000
+
+2. Construct the secuence of references that will result in increased Hit/Miss ratio.
+To decrease the ratio we need to take the sequence of reference with the lower number of hits and higher number of misses. For example, each time access the page, that is not in the memory:
+1, 2, 3..148, 149, 150
+For a such sequence of length 150 output of ex1.c is:
+hits: 149, misses: 1, ratio: 149.000000
