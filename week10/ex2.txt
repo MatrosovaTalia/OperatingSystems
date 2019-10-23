@@ -1,0 +1,9 @@
+link /home/natalia/Documents/Term\ 3/OS/OperatingSystems/week01/file.txt _ex2.txt
+/*919993 is inode number*/
+
+find /home/natalia/Documents/Term\ 3/OS/OperatingSystems/week01/file.txt -inum 919993
+/* /home/natalia/Documents/Term 3/OS/OperatingSystems/week01/file.txt */
+
+find /home/natalia/Documents/Term\ 3/OS/OperatingSystems/week01/file.txt -inum 919993 -exec rm {} \;
+
+

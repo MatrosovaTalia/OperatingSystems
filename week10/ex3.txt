@@ -1,0 +1,8 @@
+chmod a-x _ex3.txt
+
+chmod uo+rwx _ex3.txt
+chmod g-rwx _ex3.txt
+
+660 - read and write permition for owner and group
+775 - read, write and execute permition for owner and group, read and execute permition for others
+777 - reand, write execute permition for all
