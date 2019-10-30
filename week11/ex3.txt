@@ -1,0 +1,32 @@
+The stdout is line buffered, so characters writen there are transmitted to a file 
+(terminal in our case) in blocks, when a newline character appear ('\n'). The buffer is not flushed until the '\n' appear.
+
+In the first code snippet:
+1. int main(void) {
+2. 	printf("Hello");
+3. 	fork();
+4. 	printf("\n");
+5. 	return 0;
+6. }
+
+In line 2 the string to be printed is "Hello", so when it forks in line 3, the buffer for stdout already contains "Hello", which is not flushed, so the second Hello is added, then '\n' after 4th line appeared, the line is printed, buffer is flushed.
+
+Therefore the output is:
+Hello
+Hello
+
+In the second code snippet:
+1. int main(void) {
+2.     printf("Hello\n");
+3.     fork();
+4.    printf("\n");
+5.    return 0;
+6. }
+
+The string to be printed in line 2 is "Hello\n", so it is copied into the buffer for stdout, transered to the stdout and flushed. When it forks, the buffer is empty, so only '\n' is printed for child proccess (and one '\n' for parent process).
+
+Therefore the output is:
+Hello
+
+
+
