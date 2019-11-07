@@ -1,0 +1,74 @@
+time ./copy src.txt dest.txt
+File size: 14kB
+
+BUF_SIZE 1024
+real    0m0,003s
+user    0m0,003s
+sys     0m0,000s
+
+BUF_SIZE 1048576
+real    0m0,005s
+user    0m0,004s
+sys     0m0,000s
+
+
+BUF_SIZE 4
+real    0m0,005s
+user    0m0,001s
+sys     0m0,004s
+
+With O_SYNC flag:
+
+BUF_SIZE 1024
+real    0m0,006s
+user    0m0,001s
+sys     0m0,004s
+
+BUF_SIZE 1048576
+real    0m0,005s
+user    0m0,001s
+sys     0m0,004s
+
+
+BUF_SIZE 4
+real    0m0,005s
+user    0m0,001s
+sys     0m0,004s
+
+
+I tried it several times and figured out that the time differs for the same buffer size from time to time for both 
+(with O_SYNC and without). The difference in time between compiling with O_SYNC and without O_SYNC is not remarkable.
+
+File size: ~10Mb:
+
+Without O_SYNC:
+BUF_SIZE 1024
+real    0m0,108s
+user    0m0,004s
+sys     0m0,079s
+
+BUF_SIZE 4
+real    0m15,796s
+user    0m2,535s
+sys     0m12,805s
+
+With O_SYNC flag:
+
+BUF_SIZE 1024
+real    0m12,599s
+user    0m0,024s
+sys     0m0,663s
+
+BUF_SIZE 4
+real    5m50,254s
+user    0m1,021s
+sys     0m25,649s
+
+
+The using O_SYNC flag significantly slows down the copying. The reason of this is the fact that with O_SYNC guarantee
+to flush both: updates to the file length metadata and the last modification timestamp metadata.
+Meaning that write operations will flush data and all associated metadata to the underlying hardware.
+
+
+
+
