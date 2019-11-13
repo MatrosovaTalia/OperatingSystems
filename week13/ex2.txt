@@ -1,0 +1,102 @@
+Recovery:
+Does not prevents deadlock from occuring. Lets deadlock occure. Detects, when 
+this happens, takes some action to recover from it.
+
+
+There are several ways to recover from a deadlock after its detection. 
+1) Through preemtion
+    Temporary take the resource away from its owner process, give it to 
+    another process, for which it is needed.
+
+    Disadvantage:
+    It is not always possible to preempt the proccess safely. It is largely
+    depends on the type of the resource in need. (For example we cannot 
+    suspend printing process, otherwise we get a mixture of printed documnets).
+
+2) Through rollback
+    The system designers must save the state of the process on file, so it can
+    be restarted later. When a deadlock is detected, check which resources are 
+    needed. To do the recovery, a process that owns a needed resource is 
+    rolled back to a checkpoint before it acquired that resource.
+
+    Disadvantages: all the work done after the checkpoint is lost. If the 
+    process wants to get the resource again it need to wait untill it become 
+    free again.
+
+3) Through killing process
+    Kill the process, which has needed resources.
+
+    Disadvantages: 
+    The other processes may not be able to continue the execution without the 
+    killed one. The process that updates some data/files/etc, that has already
+    started to update the date after being killed and rerun will again update 
+    the data second time. The wrong data might occure in the output.
+
+Avoidance:
+The system must be able to decide whether granting a resource is safe or not
+and make the allocation only when it is safe. (Banker's algorithm, for 
+example).
+
+Disadvantages: 
+The OS must know in advance the maximum number of the resources, that are 
+needed for the process, which impossible in practice.
+
+Prevention:
+Make sure that one of the 4 condition for deadlocks is never satisfied.
+
+1) Mutual-Exclusion:
+    If no resource were ever assigned exclusively to a single process, we 
+    would never have deadlocks. However, allowing to proccess to access to the
+    same resource simultaneously will lead to chaos.
+    Disadvantages:
+    It is only possible when we are 100% that there no process that will try
+    to access the same resource at the same time.
+
+2) Hold-and-wait
+    We need to require all processes to request all their resources before 
+    starting execution. If ev erything is available, the process will be 
+    allocated whatever it needs and can run to completion. If one or more 
+    resources are busy, nothing will be allocated and the process will just
+    wait.
+
+    Disadvantages:
+    Many processes do not know how many resources they will need until they 
+    have started running. If they do, the Banker's algorithm will be possible.
+
+    A slightly different way to break the hold-and-wait condition is to 
+    require a process requesting a resource to first temporarily release all 
+    the resources it currently holds.
+
+    Disadvantage:
+    Then it tries to get everything it needs all at once, and the deadlock 
+    might occure again.
+
+3) No preemption
+    Some resources can be taken away from their owner processes using 
+    virtualization. The printer output to the disk and allowing only the
+    printer daemon access to the real printer eliminates deadlocks involving 
+    the printer.
+
+    Disadvantage: 
+    This approach may create a deadlock for other devices (a deadlock for disk 
+    space, for example). Also, not every resource can be virtualized like this.
+
+4) Circular wait 
+    One way is simply to have a rule saying that a process is entitled only to
+    a single resource at any moment. If it needs a second one, it must release
+    the first one.
+    
+    Disadvantage:
+    May be not possible for some processes. For a process that needs to copy a
+    huge file from a tape to a printer, this restriction is unacceptable.
+
+    Another way is to provide global numbering of resources and require the
+    processes to request resources whenever they want to, but all requests must
+    be made in numerical order. A process may request first a printer and then
+    a tape drive, but it may not request first a plotter and then a printer.
+    With this rule, the resource allocation graph can never have cycles and 
+    no deadlocks might occure as a consequence.
+
+     Disadvantages:
+     It may be not possible to find the appropriate enumeration that satisfies 
+     each procces.

@@ -1,0 +1,11 @@
+Number of resources (rn)
+Number of processes (pn)
+E = [x1, x2,..xrn]
+A = [y1, y2,..yrn]
+
+Allocation matrix (rn x pn)
+
+Request matrix (rn x pn)
+
+
+
